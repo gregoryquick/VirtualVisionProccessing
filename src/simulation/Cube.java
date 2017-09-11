@@ -4,13 +4,12 @@ import org.jblas.DoubleMatrix;
 
 import control.Return;
 
-public class RectangleTarget extends RigidBody {
+public class Cube extends RigidBody {
 	
-	protected double length;
-	protected double heigth;
+	protected double scale;
 	protected DoubleMatrix corners;
 	
-	public RectangleTarget(RigidBody initializer, Camera orgin, double length, double heigth) {
+	public Cube(RigidBody initializer, Camera orgin, double scale) {
 		super(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, orgin);
 		double pitch = 0.0;
 		double roll = 0.0;
@@ -30,30 +29,18 @@ public class RectangleTarget extends RigidBody {
 		this.x = x;
 		this.y = y;
 		this.z = z;
-		this.heigth = heigth;
-		this.length = length;
+		this.scale = scale;
 		update();
 	}
 	
 	@Override
 	public Return update() {
-		/**
-		 * Point matrix for target
-		 * [ a0x , a1x , a2x , a3x ]
-		 * [ a0y , a1y , a2y , a3y ]
-		 * [ a0z , a1z , a2z , a3z ]
-		 * [ a0w , a1w , a2w , a3w ]
-		 * a0 thru a3 are the points at the corners of the
-		 * target starting from the top left going counter-
-		 * clockwise. The x,y,z,w coordinates are the projective
-		 * coordinates of said points;
-		 */
 		//Initialize the points about 0 vector
 		DoubleMatrix points = new DoubleMatrix(new double[][]{
-			new double[]{0.0 - (length/2.0),0.0 - (length/2.0),0.0 + (length/2.0),0.0 + (length/2.0)},
-			new double[]{0.0 + (heigth/2.0),0.0 - (heigth/2.0),0.0 - (heigth/2.0),0.0 - (heigth/2.0)},
-			new double[]{0.0               ,0.0               ,0.0               ,0.0               },
-			new double[]{1.0               ,1.0               ,1.0               ,1.0               } 
+			new double[]{1.0      ,1.0      ,1.0      ,1.0      ,-1.0     ,-1.0     ,-1.0     ,-1.0     },
+			new double[]{1.0      ,1.0      ,-1.0     ,-1.0     ,1.0      ,1.0      ,-1.0     ,-1.0     },
+			new double[]{1.0      ,-1.0     ,1.0      ,-1.0     ,1.0      ,-1.0     ,1.0      ,-1.0     },
+			new double[]{1.0/scale,1.0/scale,1.0/scale,1.0/scale,1.0/scale,1.0/scale,1.0/scale,1.0/scale} 
 			});
 		
 		//Created rotation matrix, starting with roll in it

@@ -4,17 +4,21 @@ import control.Return;
 
 public class RigidBody {
 	
-//	All angles are in radians
-	private double pitch;
-	private double roll;
-	private double yaw;
-	private double x;
-	private double y;
-	private double z;
+	//All angles are in radians
+	//pitch is about the x axis
+	//roll is about the z axis
+	//yaw is about the y axis
+	//Rotate counterclockwise about respective axis
+	protected double pitch;
+	protected double roll;
+	protected double yaw;
+	protected double x;
+	protected double y;
+	protected double z;
 	
-	private int index;
+	protected int index;
 	
-	private Camera orgin;
+	protected Camera orgin;
 	
 	public RigidBody(double pitch, double roll, double yaw, double x,double y, double z, Camera from) {
 		this.setPitch(pitch);
