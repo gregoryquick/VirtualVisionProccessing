@@ -48,6 +48,14 @@ public class RigidBody {
 	}
 	
 	protected void updateRot() {
+		//Reset rotation matrix
+		rotMatrix = new DoubleMatrix(new double[][] {
+			new double[] {1.0             ,0.0             ,0.0             ,0.0             },
+			new double[] {0.0             ,1.0             ,0.0             ,0.0             },
+			new double[] {0.0             ,0.0             ,1.0             ,0.0             },
+			new double[] {0.0             ,0.0             ,0.0             ,1.0             }
+		});
+		
 		//Pitch rotation
 		new DoubleMatrix(new double[][] {
 			new double[] {1.0             ,0.0             ,0.0             ,0.0             },
